@@ -1,0 +1,17 @@
+Rate : {{ currentRate }}
+<label>
+  override the current rate {{ currentRate }}:
+  <input type="text" [formControl]="inputRate">
+</label>
+<label>
+  Enter an amount:
+  <input type="text" [formControl]="amount">
+</label>
+{{ convertedValue$ | async }}
+<button class="button" type="submit" (click)="onSubmit()">convert</button>
+<ul>
+<li *ngFor="let conversion of previousConversions$ | async; index as i">
+  {{ conversion.index }} {{ conversion.amount }} {{ conversion.exchangeRate }} {{ conversion.convertedValue }}
+</li>
+</ul>
+<button class="button" (click)="toggle()">toggle</button>
