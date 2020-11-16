@@ -41,9 +41,7 @@ export class DashboardComponent implements OnInit {
         this.previousConversions$ = this.exchangeService.conversionsObserver;
         this.convertedValue$ = this.exchangeService.valueObserver;
       });
-
     });
-
   }
 
   relDiff(a, b) {
