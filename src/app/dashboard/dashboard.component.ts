@@ -54,7 +54,7 @@ export class DashboardComponent implements OnInit {
   }
 
   onSubmit() {
-    if (+this.amount.value) {
+    if (this.amount.value) {
       const diff = this.relDiff(this.currentRate, +this.inputRate.value);
       const r: number = diff >= 2 ? this.currentRate : +this.inputRate.value;
       this.exchangeService.convert(+this.amount.value, r);
