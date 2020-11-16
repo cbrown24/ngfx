@@ -1,20 +1,42 @@
-Rate : {{ currentRate }}
-<mat-form-field appearance="fill">
-    <mat-label>
-        override the current rate {{ currentRate }}:
-        <input matInput type="text" [formControl]="inputRate">
-      </mat-label>
-  </mat-form-field>
+<h3>ngfx - a currency converter</h3>
 
-<label>
-  Enter an amount:
-  <input type="text" [formControl]="amount">
-</label>
-{{ convertedValue$ | async }}
-<button class="button" type="submit" (click)="onSubmit()">convert</button>
-<ul>
-<li *ngFor="let conversion of previousConversions$ | async; index as i">
-  {{ conversion.index }} {{ conversion.amount }} {{ conversion.exchangeRate }} {{ conversion.convertedValue }}
-</li>
-</ul>
-<button class="button" (click)="toggle()">toggle</button>
+<p>Current Exchange Rate = {{ currentRate }}</p>
+<mat-form-field>
+    <mat-label>
+        override current rate {{ currentRate }}:
+    </mat-label>
+    <input matInput type="text" [formControl]="inputRate">
+</mat-form-field>
+
+<mat-form-field>
+    <mat-label>
+    Enter an amount:
+    </mat-label>
+    <input matInput type="text" [formControl]="amount">
+</mat-form-field>
+
+<div *ngIf="convertedValue$ |async as convertedValue">
+    <h3>Current converted value: {{ convertedValue }}</h3>
+</div>
+<br>
+<button mat-raised-button (click)="onSubmit()">convert</button>
+<button mat-raised-button (click)="toggle()">toggle</button>
+<br>
+
+<div *ngIf="previousConversions$ | async as previousConversions">
+    <table>
+        <tr>
+            <th>id</th>
+            <th>amount</th>
+            <th>exchangeRate</th>
+            <th>convertedValue</th>
+        </tr>
+    <tr *ngFor="let conversion of previousConversions">
+      <td>{{ conversion.index }}</td>
+      <td>{{ conversion.amount }}</td>
+      <td>{{ conversion.exchangeRate }}</td>
+      <td>{{ conversion.convertedValue }}</td>
+    </tr>
+    </table>
+</div>
+

@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit {
   inputRate = new FormControl(0);
   rate = this.eurRate;
   prsub: Subscription;
+  showConverted = false;
 
   constructor(private exchangeService: ExchangeService) { }
 
@@ -46,9 +47,12 @@ export class DashboardComponent implements OnInit {
   }
 
   onSubmit() {
-    const diff = this.relDiff(this.currentRate, +this.inputRate.value);
-    const r: number = diff >= 2 ? this.currentRate : +this.inputRate.value;
-    this.exchangeService.convert(+this.amount.value, r);
+    if (+this.amount.value) {
+      this.showConverted = true;
+      const diff = this.relDiff(this.currentRate, +this.inputRate.value);
+      const r: number = diff >= 2 ? this.currentRate : +this.inputRate.value;
+      this.exchangeService.convert(+this.amount.value, r);
+    }
   }
 
   toggle() {
