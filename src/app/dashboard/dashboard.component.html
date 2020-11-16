@@ -1,8 +1,11 @@
 Rate : {{ currentRate }}
-<label>
-  override the current rate {{ currentRate }}:
-  <input type="text" [formControl]="inputRate">
-</label>
+<mat-form-field appearance="fill">
+    <mat-label>
+        override the current rate {{ currentRate }}:
+        <input matInput type="text" [formControl]="inputRate">
+      </mat-label>
+  </mat-form-field>
+
 <label>
   Enter an amount:
   <input type="text" [formControl]="amount">
