@@ -36,8 +36,8 @@ export class DashboardComponent implements OnInit {
       this.exchangeService.getCurrencies(this.from, this.to).subscribe( data => {
         this.fromRate = data.from.initialRate;
         this.toRate = data.to.initialRate;
-        this.getRate();
-        this.prsub = this.polledRate$.subscribe(rate => this.currentRate = rate);
+        this.setupPoling();
+        this.listenForRate();
         this.previousConversions$ = this.exchangeService.conversionsObserver;
         this.convertedValue$ = this.exchangeService.valueObserver;
       });
@@ -46,9 +46,13 @@ export class DashboardComponent implements OnInit {
 
   relDiff(a, b) {
     return  100 * Math.abs( ( a - b ) / ( (a + b) / 2 ) );
-   }
+  }
 
-  getRate(): void {
+  listenForRate(): void {
+    this.prsub = this.polledRate$.subscribe(rate => this.currentRate = rate);
+  }
+
+  setupPoling(): void {
     this.polledRate$ = timer(1, 3000).pipe( switchMap(() =>
           this.exchangeService.getRate(this.from)));
   }
