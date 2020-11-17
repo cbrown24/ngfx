@@ -17,11 +17,10 @@ b. Switch set to "USD": the amount is entered in USD and result value in EUR
 
 # Developed in
 
--   Angular CLI: 8.3.29
--   Node: 12.12.0
--   OS: darwin x64
--   Angular: 8.2.14
-
+Angular CLI: 11.0.1
+Node: 12.12.0
+OS: darwin x64
+Angular: 11.0.0
 
 ## setup/install:
   - git clone https://github.com/cbrown24/ngfx.git
