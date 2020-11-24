@@ -4,7 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard/usd/eur', pathMatch: 'full' },
+  { path: '', redirectTo: '/dashboard/eur/usd', pathMatch: 'full' },
   { path: 'dashboard/:from/:to', component: DashboardComponent },
 ];
 
